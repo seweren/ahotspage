@@ -1,7 +1,7 @@
 {
   "name": "ahotspage",
-  "version": "1.0.0",
-  "description": "Heroes of the Storm page for BlizzAPI",
+  "version": "0.0.1",
+  "description": "A Heroes of the Storm page",
   "main": "gulpfile.js",
   "directories": {
     "test": "tests"
@@ -21,6 +21,7 @@
     "hots",
     "api"
   ],
-  "author": "Gergely Garai",
-  "license": "ISC"
+  "author": "seweren",
+  "repository": "https://github.com/seweren/ahotspage.git",
+  "license": "MIT"
 }
