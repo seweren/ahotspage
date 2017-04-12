@@ -1,6 +1,10 @@
 {
   "extends": "../tsconfig",
-  "compilerOptions": {},
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es6",
+    "moduleResolution": "node"
+  },
   "files": [
     "server.ts"
   ]

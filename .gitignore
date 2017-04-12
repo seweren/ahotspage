@@ -1,4 +1,6 @@
 /**/*.js
+/**/*.map
 /node_modules
+.awcache
 !gulpfile.js
 !/**/*webpack.js
