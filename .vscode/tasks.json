@@ -5,9 +5,21 @@
   "tasks": [
     {
       "taskName": "server-compile",
-      "isBuildCommand": true,
       "args": [
         "server-compile"
+      ]
+    },
+    {
+      "taskName": "client-compile",
+      "args": [
+        "client-compile"
+      ]
+    },
+    {
+      "taskName": "all-compile",
+      "isBuildCommand": true,
+      "args": [
+        "all-compile"
       ]
     }
   ]

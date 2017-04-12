@@ -6,9 +6,8 @@
   "files.insertFinalNewline": true,
   "files.trimTrailingWhitespace": true,
   "files.exclude": {
-    "/**/*.js": {
-      "when": "$(basename).ts"
-    },
+    "/**/index.js": true,
+    "/**/server.js": true,
     "/**/*.map": true,
     "**/.git": true,
     "**/.svn": true,
