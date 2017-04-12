@@ -1,11 +1,8 @@
 {
-  "extends": "../tsconfig",
   "compilerOptions": {
-    "jsx": "react",
-    "target": "es6",
-    "module": "umd"
+    "jsx": "react"
   },
   "files": [
-    "index.ts"
+    "index.tsx"
   ]
 }

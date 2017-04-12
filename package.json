@@ -20,7 +20,12 @@
     "typescript": "^2.2.2"
   },
   "devDependencies": {
-    "tslint": "^5.0.0"
+    "@types/webpack": "^2.2.14",
+    "@types/webpack-stream": "^3.2.6",
+    "awesome-typescript-loader": "^3.1.2",
+    "tslint": "^5.0.0",
+    "webpack": "^2.3.3",
+    "webpack-stream": "^3.2.0"
   },
   "keywords": [
     "hots",

@@ -1,3 +1,4 @@
+/**/*.js
 /node_modules
 !gulpfile.js
-/**/*.js
+!/**/*webpack.js
