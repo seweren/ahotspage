@@ -10,6 +10,9 @@ module.exports = {
   output: {
     filename: "server.js",
   },
+  node: {
+    __dirname: true,
+  },
   externals: nodeModules,
   resolve: {
     extensions: ['.ts']

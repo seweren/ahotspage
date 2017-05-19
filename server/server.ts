@@ -1,6 +1,7 @@
 import * as express from "express";
 import * as morgan from "morgan";
 import * as path from "path";
+import * as process from "process";
 
 const logger = new console.Console(process.stdout);
 
