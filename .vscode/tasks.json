@@ -16,11 +16,8 @@
       ]
     },
     {
-      "taskName": "all-compile",
-      "isBuildCommand": true,
-      "args": [
-        "all-compile"
-      ]
+      "taskName": "default",
+      "isBuildCommand": true
     }
   ]
 }
