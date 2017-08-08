@@ -17,15 +17,21 @@
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "ts-node": "^3.3.0",
-    "typescript": "^2.4.2"
+    "typescript": "^2.4.2",
+    "webpack-hot-middleware": "^2.18.2"
   },
   "devDependencies": {
+    "@types/react-hot-loader": "^3.0.3",
     "@types/webpack": "^2.2.16",
+    "@types/webpack-dev-middleware": "^1.9.2",
     "@types/webpack-dev-server": "^2.4.1",
+    "@types/webpack-hot-middleware": "^2.15.0",
     "@types/webpack-stream": "^3.2.7",
     "awesome-typescript-loader": "^3.2.2",
+    "react-hot-loader": "^3.0.0-beta.7",
     "tslint": "^5.5.0",
     "webpack": "^2.7.0",
+    "webpack-dev-middleware": "^1.12.0",
     "webpack-dev-server": "^2.6.1",
     "webpack-stream": "^3.2.0"
   },

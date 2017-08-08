@@ -3,8 +3,7 @@
   "compilerOptions": {
     "module": "commonjs",
     "target": "es6",
-    "moduleResolution": "node",
-    "jsx": "react"
+    "moduleResolution": "node"
   },
   "files": [
     "server.ts"

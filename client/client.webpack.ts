@@ -3,20 +3,28 @@ import * as webpack from "webpack";
 export let clientWebpackConfig = {
   devtool: "source-map" as "source-map",
   entry: [
-    "webpack-dev-server/client?http://localhost:3000", // WebpackDevServer host and port
-    "webpack/hot/only-dev-server", // "only" prevents reload on syntax errors
-    "../client/index.tsx", // Your appʼs entry point
+    "react-hot-loader/patch",
+    "webpack/hot/dev-server",
+    "webpack-hot-middleware/client",
+    "../client/index.tsx",
   ],
   module: {
     rules: [
-      { test: /\.tsx?$/, loader: "awesome-typescript-loader", options: { useCache: true } },
+      {
+        test: /\.tsx?$/,
+        use: [
+          { loader: "react-hot-loader/webpack" },
+          { loader: "awesome-typescript-loader", options: { useCache: true } },
+        ],
+      },
     ],
   },
   output: {
     filename: "index.js",
-    publicPath: "../client/",
+    publicPath: "/",
   },
   plugins: [
+    new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
   ],
   resolve: {
