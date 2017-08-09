@@ -25,6 +25,7 @@
     "@types/webpack": "^2.2.16",
     "@types/webpack-dev-middleware": "^1.9.2",
     "@types/webpack-dev-server": "^2.4.1",
+    "@types/webpack-env": "^1.13.0",
     "@types/webpack-hot-middleware": "^2.15.0",
     "@types/webpack-stream": "^3.2.7",
     "awesome-typescript-loader": "^3.2.2",

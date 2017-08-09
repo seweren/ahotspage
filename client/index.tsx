@@ -7,8 +7,8 @@ const rootElement = document.getElementById("container");
 render(<AppContainer><App /></AppContainer>, rootElement);
 
 // Hot Module Replacement API
-if ((module as any).hot) {
-  (module as any).hot.accept("./app", () => {
+if (module.hot) {
+  module.hot.accept("./app", () => {
     const ACCEPTED_APP = require("./app").App;
     render(<AppContainer><ACCEPTED_APP /></AppContainer>, rootElement);
   });
