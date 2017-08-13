@@ -16,9 +16,10 @@ export let serverWebpackConfig = {
   module: {
     rules: [
       {
-        loader: "awesome-typescript-loader",
-        options: { configFileName: "tsconfig.server.json", useCache: true },
-        test: /\.ts$/,
+        test: /\.ts/,
+        use: [
+          { loader: "awesome-typescript-loader", options: { useCache: true } },
+        ],
       },
     ],
   },

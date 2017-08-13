@@ -20,7 +20,7 @@ export class App extends React.Component<{}, { count: number; }> {
   public render() {
     return (
       <div>
-        <h1>Hello HOTS!</h1>
+        <h1>Hello cicca!</h1>
         <div>Hot-reloading React written in TypeScript! {this.state.count}</div>
       </div>
     );
