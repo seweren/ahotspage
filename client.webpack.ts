@@ -1,3 +1,4 @@
+import { resolve } from "path";
 import * as webpack from "webpack";
 
 export let clientWebpackConfig = {
@@ -6,7 +7,7 @@ export let clientWebpackConfig = {
     "react-hot-loader/patch",
     "webpack/hot/dev-server",
     "webpack-hot-middleware/client",
-    "../client/index.tsx",
+    "./client/index.tsx",
   ],
   module: {
     rules: [
@@ -14,13 +15,14 @@ export let clientWebpackConfig = {
         test: /\.tsx?$/,
         use: [
           { loader: "react-hot-loader/webpack" },
-          { loader: "awesome-typescript-loader", options: { useCache: true } },
+          { loader: "awesome-typescript-loader", options: { configFileName: "tsconfig.client.json", useCache: true } },
         ],
       },
     ],
   },
   output: {
     filename: "index.js",
+    path: resolve(__dirname, "client"),
     publicPath: "/",
   },
   plugins: [

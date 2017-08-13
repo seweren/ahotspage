@@ -1,4 +1,5 @@
 import * as fs from "fs";
+import { resolve } from "path";
 
 const nodeModules: any = {};
 fs.readdirSync("./node_modules")
@@ -10,10 +11,15 @@ fs.readdirSync("./node_modules")
 
 export let serverWebpackConfig = {
   devtool: "source-map" as "source-map",
+  entry: ["./server/server.ts"],
   externals: nodeModules,
   module: {
     rules: [
-      { test: /\.ts$/, loader: "awesome-typescript-loader", options: { useCache: true } },
+      {
+        loader: "awesome-typescript-loader",
+        options: { configFileName: "tsconfig.server.json", useCache: true },
+        test: /\.ts$/,
+      },
     ],
   },
   node: {
@@ -21,6 +27,7 @@ export let serverWebpackConfig = {
   },
   output: {
     filename: "server.js",
+    path: resolve(__dirname, "server"),
   },
   resolve: {
     extensions: [".ts"],
