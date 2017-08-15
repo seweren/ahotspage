@@ -10,15 +10,21 @@ const pathToClientWebpackTS = join(__dirname, "..");
 const clientWebpackConfig = getClientWebpackConfig(pathToClientWebpackTS);
 const compiler = webpack(clientWebpackConfig);
 
-export const middlewares: express.RequestHandler[] = [
-  morgan("combined"),
-  WebpackDevMiddleware(compiler,
-    {
-      publicPath: clientWebpackConfig.output.publicPath,
-      stats: { colors: true },
-    }),
-  WebpackHotMiddleware(compiler, {
-    log: console.log,
-  }),
-  express.static(`./${pathToClientWebpackTS}${clientWebpackConfig.output.path}`),
-];
+export const middlewares: express.RequestHandler[] =
+  process.env.NODE_ENV === "production" ?
+    [
+      morgan("combined"),
+      express.static(`./${pathToClientWebpackTS}${clientWebpackConfig.output.path}`),
+    ] :
+    [
+      morgan("combined"),
+      WebpackDevMiddleware(compiler,
+        {
+          publicPath: clientWebpackConfig.output.publicPath,
+          stats: { colors: true },
+        }),
+      WebpackHotMiddleware(compiler, {
+        log: console.log,
+      }),
+      express.static(`./${pathToClientWebpackTS}${clientWebpackConfig.output.path}`),
+    ];

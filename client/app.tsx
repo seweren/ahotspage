@@ -6,7 +6,6 @@ export class App extends React.Component<{}, { count: number; }> {
 
   private interval: number;
 
-  // This state will be maintained during hot reloads
   public componentWillMount() {
     this.interval = window.setInterval(() => {
       this.setState({ count: this.state.count + 1 });

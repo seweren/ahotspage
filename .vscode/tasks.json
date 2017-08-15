@@ -16,6 +16,12 @@
       ]
     },
     {
+      "taskName": "client-compile",
+      "args": [
+        "client-compile"
+      ]
+    },
+    {
       "taskName": "default",
       "isBuildCommand": true
     }
