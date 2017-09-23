@@ -1,3 +1,4 @@
+import { join } from "path";
 import * as webpack from "webpack";
 import * as merge from "webpack-merge";
 
@@ -5,6 +6,9 @@ import { getClientWebpackCommonConfig } from "./client.webpack.common";
 
 export function getClientWebpackProdConfig(pathToClientWebpackTS: string): webpack.Configuration {
   return merge(getClientWebpackCommonConfig(pathToClientWebpackTS), {
+    entry: [
+      `./${join(pathToClientWebpackTS, "client", "index.tsx")}`,
+    ],
     plugins:
     [
       new webpack.LoaderOptionsPlugin({

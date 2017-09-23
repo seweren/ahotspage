@@ -4,12 +4,6 @@ import * as webpack from "webpack";
 export function getClientWebpackCommonConfig(pathToClientWebpackTS: string): webpack.Configuration {
   return {
     devtool: "eval" as "eval",
-    entry: [
-      "react-hot-loader/patch",
-      "webpack/hot/dev-server",
-      "webpack-hot-middleware/client",
-      `./${join(pathToClientWebpackTS, "client", "index.tsx")}`,
-    ],
     module: {
       rules: [
         {
