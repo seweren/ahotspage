@@ -5,27 +5,38 @@ import * as webpack from "webpack";
 import * as WebpackDevMiddleware from "webpack-dev-middleware";
 import * as WebpackHotMiddleware from "webpack-hot-middleware";
 
-import { getClientWebpackConfig } from "./../client.webpack";
+import { getClientWebpackDevConfig } from "./../client.webpack.dev";
+import { getClientWebpackProdConfig } from "./../client.webpack.prod";
 
 const pathToClientWebpackTS = join(__dirname, "..");
-const clientWebpackConfig = getClientWebpackConfig(pathToClientWebpackTS);
-const compiler = webpack(clientWebpackConfig);
+const clientWebpackDevConfig = getClientWebpackDevConfig(pathToClientWebpackTS);
+const clientWebpackProdConfig = getClientWebpackProdConfig(pathToClientWebpackTS);
+const compiler = webpack(clientWebpackDevConfig);
+
+const commonMiddleWares: express.RequestHandler[] =
+  [
+    morgan("combined"),
+  ];
 
 export const middlewares: express.RequestHandler[] =
-  process.env.NODE_ENV === "production" ?
+  (process.env.NODE_ENV === "production") ?
     [
-      morgan("combined"),
-      express.static(`./${pathToClientWebpackTS}${clientWebpackConfig.output.path}`),
+      ...commonMiddleWares,
+      ...[
+        express.static(`./${pathToClientWebpackTS}${clientWebpackProdConfig.output.path}`),
+      ],
     ] :
     [
-      morgan("combined"),
-      WebpackDevMiddleware(compiler,
-        {
-          publicPath: clientWebpackConfig.output.publicPath,
-          stats: { colors: true },
+      ...commonMiddleWares,
+      ...[
+        WebpackDevMiddleware(compiler,
+          {
+            publicPath: clientWebpackDevConfig.output.publicPath,
+            stats: { colors: true },
+          }),
+        WebpackHotMiddleware(compiler, {
+          log: console.log,
         }),
-      WebpackHotMiddleware(compiler, {
-        log: console.log,
-      }),
-      express.static(`./${pathToClientWebpackTS}${clientWebpackConfig.output.path}`),
+        express.static(`./${pathToClientWebpackTS}${clientWebpackDevConfig.output.path}`),
+      ],
     ];

@@ -29,6 +29,7 @@
     "@types/webpack-dev-server": "^2.4.1",
     "@types/webpack-env": "^1.13.1",
     "@types/webpack-hot-middleware": "^2.16.0",
+    "@types/webpack-merge": "0.0.5",
     "@types/webpack-stream": "^3.2.7",
     "awesome-typescript-loader": "^3.2.3",
     "react-hot-loader": "^3.0.0-beta.7",
@@ -36,6 +37,7 @@
     "webpack": "^2.7.0",
     "webpack-dev-middleware": "^1.12.0",
     "webpack-dev-server": "^2.8.2",
+    "webpack-merge": "^4.1.0",
     "webpack-stream": "^3.2.0"
   },
   "keywords": [

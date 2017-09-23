@@ -1,6 +1,5 @@
 import * as fs from "fs";
 import { resolve } from "path";
-import * as webpack from "webpack";
 
 const nodeModules: any = {};
 fs.readdirSync("./node_modules")
@@ -10,7 +9,7 @@ fs.readdirSync("./node_modules")
     }
   });
 
-export let serverWebpackConfig = {
+export let serverWebpackCommonConfig = {
   devtool: "source-map" as "source-map",
   entry: ["./server/server.ts"],
   externals: nodeModules,
@@ -31,14 +30,6 @@ export let serverWebpackConfig = {
     filename: "server.js",
     path: resolve(__dirname, "server"),
   },
-  plugins: process.env.NODE_ENV === "production" ?
-    [
-      new webpack.DefinePlugin({
-        "process.env": { NODE_ENV: JSON.stringify("production") },
-      }),
-    ] :
-    [
-    ],
   resolve: {
     extensions: [".ts"],
   },

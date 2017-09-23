@@ -1,7 +1,7 @@
 import { join, resolve } from "path";
 import * as webpack from "webpack";
 
-export function getClientWebpackConfig(pathToClientWebpackTS: string): webpack.Configuration {
+export function getClientWebpackCommonConfig(pathToClientWebpackTS: string): webpack.Configuration {
   return {
     devtool: "eval" as "eval",
     entry: [
@@ -29,30 +29,6 @@ export function getClientWebpackConfig(pathToClientWebpackTS: string): webpack.C
       path: resolve(pathToClientWebpackTS, "client"),
       publicPath: "/",
     },
-    plugins: process.env.NODE_ENV === "production" ?
-      [
-        new webpack.LoaderOptionsPlugin({
-          debug: false,
-          minimize: true,
-        }),
-        new webpack.DefinePlugin({
-          "process.env": { NODE_ENV: JSON.stringify("production") },
-        }),
-        new webpack.optimize.UglifyJsPlugin({
-          beautify: false,
-          comments: false,
-          compress: {
-            screw_ie8: true,
-          },
-          mangle: {
-            keep_fnames: true,
-            screw_ie8: true,
-          },
-        }),
-      ] :
-      [
-        new webpack.HotModuleReplacementPlugin(),
-      ],
     resolve: {
       extensions: [".ts", ".tsx", ".js"],
     },
