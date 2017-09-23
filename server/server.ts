@@ -1,4 +1,5 @@
 import * as express from "express";
+
 import { logger } from "./logger";
 import { middlewares } from "./middlewares";
 

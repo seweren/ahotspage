@@ -4,6 +4,7 @@ import { join } from "path";
 import * as webpack from "webpack";
 import * as WebpackDevMiddleware from "webpack-dev-middleware";
 import * as WebpackHotMiddleware from "webpack-hot-middleware";
+
 import { getClientWebpackConfig } from "./../client.webpack";
 
 const pathToClientWebpackTS = join(__dirname, "..");

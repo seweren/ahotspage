@@ -1,6 +1,5 @@
 // Place your settings in this file to overwrite default and user settings.
 {
-  "typescript.tsdk": "./node_modules/typescript/lib",
   "editor.formatOnSave": true,
   "editor.tabSize": 2,
   "files.insertFinalNewline": true,
@@ -15,6 +14,9 @@
     "**/.DS_Store": true,
     "**/.awcache": true
   },
+  "typescript.tsdk": "./node_modules/typescript/lib",
+  "typescriptHero.resolver.stringQuoteStyle": "\"",
+  "typescriptHero.resolver.organizeOnSave": true,
   "tslint.enable": true,
   "tslint.autoFixOnSave": true
 }
