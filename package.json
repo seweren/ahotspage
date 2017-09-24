@@ -6,6 +6,10 @@
   "directories": {
     "test": "tests"
   },
+  "scripts": {
+    "install": "gulp",
+    "start": "node ./server/server.js"
+  },
   "dependencies": {
     "@types/express": "^4.0.37",
     "@types/gulp": "^3.8.33",
