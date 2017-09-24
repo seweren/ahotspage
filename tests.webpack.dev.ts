@@ -9,8 +9,8 @@ fs.readdirSync("./node_modules")
     }
   });
 
-export let serverWebpackCommonConfig = {
-  entry: ["./server/server.ts"],
+export const testWebpackCommonConfig = {
+  entry: ["./tests/unittests.ts"],
   externals: nodeModules,
   module: {
     rules: [
@@ -26,10 +26,10 @@ export let serverWebpackCommonConfig = {
     __dirname: true,
   },
   output: {
-    filename: "server.js",
-    path: resolve(__dirname, "server"),
+    filename: "unittests.js",
+    path: resolve(__dirname, "tests"),
   },
   resolve: {
-    extensions: [".ts"],
+    extensions: [".ts", ".js"],
   },
 };

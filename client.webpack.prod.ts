@@ -6,6 +6,7 @@ import { getClientWebpackCommonConfig } from "./client.webpack.common";
 
 export function getClientWebpackProdConfig(pathToClientWebpackTS: string): webpack.Configuration {
   return merge(getClientWebpackCommonConfig(pathToClientWebpackTS), {
+    devtool: false,
     entry: [
       `./${join(pathToClientWebpackTS, "client", "index.tsx")}`,
     ],

@@ -6,6 +6,7 @@ import { serverWebpackCommonConfig } from "./server.webpack.common";
 export let serverWebpackProdConfig = merge(
   serverWebpackCommonConfig,
   {
+    devtool: false,
     plugins:
     [
       new webpack.DefinePlugin({

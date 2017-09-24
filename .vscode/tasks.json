@@ -4,22 +4,8 @@
   "isShellCommand": true,
   "tasks": [
     {
-      "taskName": "server-compile",
-      "args": [
-        "server-compile"
-      ]
-    },
-    {
-      "taskName": "client-compile",
-      "args": [
-        "client-compile"
-      ]
-    },
-    {
-      "taskName": "client-compile",
-      "args": [
-        "client-compile"
-      ]
+      "taskName": "tests-run",
+      "isTestCommand": true
     },
     {
       "taskName": "default",

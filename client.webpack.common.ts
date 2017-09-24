@@ -3,7 +3,6 @@ import * as webpack from "webpack";
 
 export function getClientWebpackCommonConfig(pathToClientWebpackTS: string): webpack.Configuration {
   return {
-    devtool: "eval" as "eval",
     module: {
       rules: [
         {
@@ -27,5 +26,4 @@ export function getClientWebpackCommonConfig(pathToClientWebpackTS: string): web
       extensions: [".ts", ".tsx", ".js"],
     },
   };
-
 }
