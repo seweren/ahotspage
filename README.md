@@ -1,6 +1,6 @@
 # ahotspage
 Heroes of the Storm web page
 
-- vscode
-- node
 - npm install
+- npm start
+- http://localhost:3000
