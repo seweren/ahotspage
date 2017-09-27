@@ -9,8 +9,8 @@ fs.readdirSync("./node_modules")
     }
   });
 
-export const testWebpackCommonConfig = {
-  entry: ["./tests/unittests.ts"],
+export const testsWebpackSeleniumConfig = {
+  entry: ["./tests/selenium.ts"],
   externals: nodeModules,
   module: {
     rules: [
@@ -26,7 +26,7 @@ export const testWebpackCommonConfig = {
     __dirname: true,
   },
   output: {
-    filename: "unittests.js",
+    filename: "selenium.js",
     path: resolve(__dirname, "tests"),
   },
   resolve: {

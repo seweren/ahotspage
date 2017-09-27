@@ -4,7 +4,7 @@
   "isShellCommand": true,
   "tasks": [
     {
-      "taskName": "tests-run",
+      "taskName": "run-tests",
       "isTestCommand": true
     },
     {

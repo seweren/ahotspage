@@ -8,6 +8,7 @@
     "/**/index.js": true,
     "/**/server.js": true,
     "/**/unittests.js": true,
+    "/**/selenium.js": true,
     "/**/*.map": true,
     "**/.git": true,
     "**/.svn": true,
