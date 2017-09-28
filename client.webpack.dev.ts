@@ -1,4 +1,4 @@
-import { resolve } from "path";
+import { join } from "path";
 import * as webpack from "webpack";
 import * as merge from "webpack-merge";
 
@@ -11,7 +11,7 @@ export function getClientWebpackDevConfig(pathToClientWebpackTS: string): webpac
       "react-hot-loader/patch",
       "webpack/hot/dev-server",
       "webpack-hot-middleware/client",
-      `${resolve(pathToClientWebpackTS, "client", "index.tsx")}`,
+      `./${join(pathToClientWebpackTS, "client", "index.tsx")}`,
     ],
     plugins:
     [
