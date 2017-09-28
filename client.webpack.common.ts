@@ -11,7 +11,7 @@ export function getClientWebpackCommonConfig(pathToClientWebpackTS: string): web
             { loader: "react-hot-loader/webpack" },
             {
               loader: "awesome-typescript-loader",
-              options: { configFileName: join(pathToClientWebpackTS, "tsconfig.json"), useCache: true },
+              options: { configFileName: join(pathToClientWebpackTS, "client.tsconfig.json"), useCache: true },
             },
           ],
         },

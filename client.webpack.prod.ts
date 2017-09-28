@@ -1,4 +1,4 @@
-import { join } from "path";
+import { resolve } from "path";
 import * as webpack from "webpack";
 import * as merge from "webpack-merge";
 
@@ -8,7 +8,7 @@ export function getClientWebpackProdConfig(pathToClientWebpackTS: string): webpa
   return merge(getClientWebpackCommonConfig(pathToClientWebpackTS), {
     devtool: false,
     entry: [
-      `./${join(pathToClientWebpackTS, "client", "index.tsx")}`,
+      `${resolve(pathToClientWebpackTS, "client", "index.tsx")}`,
     ],
     plugins:
     [

@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "jsx": "react",
     "noEmit": true,
     "noFallthroughCasesInSwitch": true,
     "noImplicitAny": true,
@@ -9,6 +8,9 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "alwaysStrict": true,
-    "sourceMap": false
-  }
+    "allowJs": true
+  },
+  "include": [
+    "server/**/*"
+  ]
 }

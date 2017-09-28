@@ -17,7 +17,7 @@ export let serverWebpackCommonConfig = {
       {
         test: /\.ts/,
         use: [
-          { loader: "awesome-typescript-loader", options: { useCache: true } },
+          { loader: "awesome-typescript-loader", options: { configFileName: "server.tsconfig.json", useCache: true } },
         ],
       },
     ],

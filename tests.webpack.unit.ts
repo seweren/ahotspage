@@ -17,7 +17,7 @@ export const testsWebpackUnitConfig = {
       {
         test: /\.ts/,
         use: [
-          { loader: "awesome-typescript-loader", options: { useCache: true } },
+          { loader: "awesome-typescript-loader", options: { configFileName: "tests.tsconfig.json", useCache: true } },
         ],
       },
     ],
