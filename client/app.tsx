@@ -1,27 +1,23 @@
 import * as React from "react";
+import { Provider } from "react-redux";
+import { Route, Router, Switch } from "react-router";
 
-export class App extends React.Component<{}, { count: number; }> {
+import { Hello } from "./hello";
+import { hashHistory } from "./history/history";
+import { store } from "./store/store";
 
-  public state = { count: 0 };
-
-  private interval: number;
-
-  public componentWillMount() {
-    this.interval = window.setInterval(() => {
-      this.setState({ count: this.state.count + 1 });
-    }, 1000);
-  }
-
-  public componentWillUnmount() {
-    window.clearInterval(this.interval);
-  }
+export class App extends React.Component<{}, {}> {
 
   public render() {
     return (
-      <div>
-        <h1>Hello cicca!</h1>
-        <div>Hot-reloading React written in TypeScript! {this.state.count}</div>
-      </div>
+      <Provider store={store}>
+        <Router history={hashHistory}>
+          <Switch>
+            <Route path="/" component={Hello} />
+          </Switch>
+        </Router>
+      </Provider>
     );
   }
+
 }
