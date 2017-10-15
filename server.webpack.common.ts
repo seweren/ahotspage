@@ -1,5 +1,6 @@
 import * as fs from "fs";
 import { resolve } from "path";
+import * as webpack from "webpack";
 
 const nodeModules: any = {};
 fs.readdirSync("./node_modules")
@@ -32,4 +33,7 @@ export let serverWebpackCommonConfig = {
   resolve: {
     extensions: [".ts"],
   },
+  plugins: [
+    new webpack.optimize.ModuleConcatenationPlugin()
+  ]
 };

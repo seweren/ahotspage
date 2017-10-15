@@ -15,6 +15,25 @@ export function getClientWebpackCommonConfig(pathToClientWebpackTS: string): web
             },
           ],
         },
+        {
+          test: /\.css$/,
+          use: [
+            { loader: "style-loader" },
+            { loader: "css-loader" },
+          ],
+        },
+        {
+          test: /\.(eot|woff|woff2|ttf|svg|png|jpe?g|gif)(\?\S*)?$/,
+          use: [
+            {
+              loader: "url-loader",
+              options: {
+                limit: 100000,
+                name: "[name].[ext]",
+              },
+            },
+          ],
+        },
       ],
     },
     output: {
@@ -23,7 +42,10 @@ export function getClientWebpackCommonConfig(pathToClientWebpackTS: string): web
       publicPath: "/",
     },
     resolve: {
-      extensions: [".ts", ".tsx", ".js"],
+      extensions: [".ts", ".tsx", ".js", ".css"],
     },
+    plugins: [
+      new webpack.optimize.ModuleConcatenationPlugin()
+    ]
   };
 }

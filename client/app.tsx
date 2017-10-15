@@ -2,7 +2,7 @@ import * as React from "react";
 import { Provider } from "react-redux";
 import { Route, Router, Switch } from "react-router";
 
-import { Hello } from "./hello";
+import { Hello } from "./components/hello";
 import { hashHistory } from "./history/history";
 import { store } from "./store/store";
 
