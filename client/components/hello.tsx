@@ -1,3 +1,4 @@
+import { Button, TextField } from "material-ui";
 import * as React from "react";
 
 import { setCicca } from "../actions/mainActions";
@@ -16,12 +17,20 @@ export class Hello extends React.Component<{}, helloInnerState> {
 
   public render() {
     return (
-      <button onClick={() => this.handleCiccaClick()}>Hello {this.state.cicca}</button>
+      <div>
+        <TextField label="name" onChange={e => this.handleInput(e.currentTarget.value)} />
+        <Button onClick={() => this.handleCiccaClick()}>Szia {this.state.cicca}</Button>
+      </div>
     );
   }
 
   private handleCiccaClick() {
-    store.dispatch(setCicca({ cicca: "cicca" }));
-    this.setState({ cicca: "cicca" });
+    store.dispatch(setCicca({ cicca: "Melinda" }));
+    this.setState({ cicca: "Melinda" });
   }
+
+  private handleInput(text: string) {
+    this.setState({ cicca: text });
+  }
+
 }

@@ -1,7 +1,5 @@
 /// <reference types="node" />
 /// <reference types="webpack-env" />
-import "bootstrap/dist/css/bootstrap.min.css";
-
 import * as React from "react";
 import { render } from "react-dom";
 import { AppContainer } from "react-hot-loader";
