@@ -11,7 +11,7 @@ interface helloInnerState {
 export class Hello extends React.Component<{}, helloInnerState> {
 
   public constructor() {
-    super();
+    super({});
     this.state = { cicca: "delfin" };
   }
 

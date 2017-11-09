@@ -16,7 +16,7 @@ export let serverWebpackCommonConfig = {
   module: {
     rules: [
       {
-        test: /\.ts/,
+        test: /\.tsx?$/,
         use: [
           { loader: "awesome-typescript-loader", options: { configFileName: "server.tsconfig.json", useCache: true } },
         ],
@@ -31,7 +31,7 @@ export let serverWebpackCommonConfig = {
     path: resolve(__dirname, "server"),
   },
   resolve: {
-    extensions: [".ts"],
+    extensions: [".ts", ".tsx"],
   },
   plugins: [
     new webpack.optimize.ModuleConcatenationPlugin()
