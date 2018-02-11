@@ -40,32 +40,22 @@ gulp.task("compile-unit-tests", () =>
     .pipe(gulp.dest(testsWebpackUnitConfig.output.path)),
 );
 
-gulp.task("run-unit-tests", ["compile-unit-tests"], () =>
-  gulp.src(join(testsWebpackUnitConfig.output.path, testsWebpackUnitConfig.output.filename), { read: false })
-    .pipe(mocha({ reporter: "dot" })),
-);
-
 gulp.task("compile-selenium-tests", () =>
   webpackStream(testsWebpackSeleniumConfig, webpack)
     .pipe(gulp.dest(testsWebpackSeleniumConfig.output.path)),
 );
 
-gulp.task("start-server", ["stop-servers"], () => {
+gulp.task("run-unit-tests", () =>
+  gulp.src(join(testsWebpackUnitConfig.output.path, testsWebpackUnitConfig.output.filename), { read: false })
+    .pipe(mocha({ reporter: "dot" })),
+);
+
+gulp.task("start-server", done => {
   serverPid = spawn("node", ["server/server.js"]);
+  done();
 });
 
-gulp.task("stop-servers", () => {
-  if (serverPid) {
-    serverPid.kill();
-    serverPid = null;
-  }
-  if (selenium.child) {
-    selenium.child.kill();
-    selenium.child = null;
-  }
-});
-
-gulp.task("start-selenium", (done) => {
+gulp.task("start-selenium-server", (done) => {
   selenium.install({}, (installError: any) => {
     if (installError) {
       return done(installError);
@@ -80,17 +70,46 @@ gulp.task("start-selenium", (done) => {
   });
 });
 
-gulp.task("stop-selenium", () => selenium.child.kill());
+gulp.task("stop-server", done => {
+  if (serverPid) {
+    serverPid.kill();
+    serverPid = null;
+  }
+  done();
+});
 
-gulp.task("run-selenium-tests-webdriver", ["compile-selenium-tests", "start-server", "start-selenium"], (done) =>
+gulp.task("stop-selenium-server", done => {
+  if (selenium.child) {
+    selenium.child.kill();
+    selenium.child = null;
+  }
+  done();
+});
+
+gulp.task("stop-servers", gulp.series("stop-server", "stop-selenium-server"));
+
+gulp.task("start-servers", gulp.series("start-server", "start-selenium-server"));
+
+gulp.task("run-selenium-tests-webdriver", done =>
   gulp.src(join("tests", "wdio.conf.js")).pipe(webdriver())
-    .once("error", () => { selenium.child.kill(); done(); }),
+    .once("error", () => { selenium.child.kill(); done(); })
 );
 
-gulp.task("run-selenium-tests", ["run-selenium-tests-webdriver"], () =>
-  gulp.start("stop-servers"),
+gulp.task("run-selenium-tests",
+  gulp.series(
+    "stop-servers",
+    "start-servers",
+    "run-selenium-tests-webdriver",
+    "stop-servers",
+  )
 );
 
-gulp.task("run-tests", ["run-unit-tests", "run-selenium-tests"]);
+gulp.task("compile-run-selenium-tests", gulp.series("compile-selenium-tests", "run-selenium-tests"));
 
-gulp.task("default", ["compile-client", "compile-server"]);
+gulp.task("compile-run-unit-tests", gulp.series("compile-unit-tests", "run-unit-tests"));
+
+gulp.task("run-tests", gulp.series("compile-run-unit-tests", "compile-run-selenium-tests"));
+
+gulp.task("compile-all", gulp.series("compile-client", "compile-server"));
+
+gulp.task("default", gulp.series("compile-all"));

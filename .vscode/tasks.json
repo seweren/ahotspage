@@ -1,15 +1,21 @@
 {
-  "version": "0.1.0",
+  "version": "2.0.0",
   "command": "gulp",
-  "isShellCommand": true,
+  "type": "shell",
   "tasks": [
     {
-      "taskName": "run-tests",
-      "isTestCommand": true
+      "label": "run-tests",
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      }
     },
     {
-      "taskName": "default",
-      "isBuildCommand": true
+      "label": "default",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
     }
   ]
 }
