@@ -86,9 +86,9 @@ gulp.task("stop-selenium-server", done => {
   done();
 });
 
-gulp.task("stop-servers", gulp.series("stop-server", "stop-selenium-server"));
+gulp.task("stop-servers", gulp.parallel("stop-server", "stop-selenium-server"));
 
-gulp.task("start-servers", gulp.series("start-server", "start-selenium-server"));
+gulp.task("start-servers", gulp.parallel("start-server", "start-selenium-server"));
 
 gulp.task("run-selenium-tests-webdriver", done =>
   gulp.src(join("tests", "wdio.conf.js")).pipe(webdriver())
@@ -108,8 +108,8 @@ gulp.task("compile-run-selenium-tests", gulp.series("compile-selenium-tests", "r
 
 gulp.task("compile-run-unit-tests", gulp.series("compile-unit-tests", "run-unit-tests"));
 
-gulp.task("run-tests", gulp.series("compile-run-unit-tests", "compile-run-selenium-tests"));
+gulp.task("run-tests", gulp.parallel("compile-run-unit-tests", "compile-run-selenium-tests"));
 
-gulp.task("compile-all", gulp.series("compile-client", "compile-server"));
+gulp.task("compile-all", gulp.parallel("compile-client", "compile-server"));
 
 gulp.task("default", gulp.series("compile-all"));
