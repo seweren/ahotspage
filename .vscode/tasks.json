@@ -22,6 +22,19 @@
         "$tslint5",
         "$gulp-tsc"
       ]
+    },
+    {
+      "label": "tslint-all",
+      "command": "gulp tslint-all",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": [
+        "$tsc",
+        "$tslint5",
+        "$gulp-tsc"
+      ]
     }
   ]
 }

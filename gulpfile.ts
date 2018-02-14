@@ -1,6 +1,7 @@
 import { ChildProcess, spawn } from "child_process";
 import * as gulp from "gulp";
 import * as mocha from "gulp-mocha";
+import * as tslint from "gulp-tslint";
 import { join } from "path";
 import * as webpack from "webpack";
 import * as webpackStream from "webpack-stream";
@@ -50,7 +51,7 @@ gulp.task("run-unit-tests", () =>
     .pipe(mocha({ reporter: "dot" })),
 );
 
-gulp.task("start-server", done => {
+gulp.task("start-server", (done) => {
   serverPid = spawn("node", ["server/server.js"]);
   done();
 });
@@ -70,7 +71,7 @@ gulp.task("start-selenium-server", (done) => {
   });
 });
 
-gulp.task("stop-server", done => {
+gulp.task("stop-server", (done) => {
   if (serverPid) {
     serverPid.kill();
     serverPid = null;
@@ -78,7 +79,7 @@ gulp.task("stop-server", done => {
   done();
 });
 
-gulp.task("stop-selenium-server", done => {
+gulp.task("stop-selenium-server", (done) => {
   if (selenium.child) {
     selenium.child.kill();
     selenium.child = null;
@@ -90,9 +91,9 @@ gulp.task("stop-servers", gulp.parallel("stop-server", "stop-selenium-server"));
 
 gulp.task("start-servers", gulp.parallel("start-server", "start-selenium-server"));
 
-gulp.task("run-selenium-tests-webdriver", done =>
+gulp.task("run-selenium-tests-webdriver", (done) =>
   gulp.src(join("tests", "wdio.conf.js")).pipe(webdriver())
-    .once("error", () => { selenium.child.kill(); done(); })
+    .once("error", () => { selenium.child.kill(); done(); }),
 );
 
 gulp.task("run-selenium-tests",
@@ -101,7 +102,7 @@ gulp.task("run-selenium-tests",
     "start-servers",
     "run-selenium-tests-webdriver",
     "stop-servers",
-  )
+  ),
 );
 
 gulp.task("compile-run-selenium-tests", gulp.series("compile-selenium-tests", "run-selenium-tests"));
@@ -110,6 +111,24 @@ gulp.task("compile-run-unit-tests", gulp.series("compile-unit-tests", "run-unit-
 
 gulp.task("run-tests", gulp.parallel("compile-run-unit-tests", "compile-run-selenium-tests"));
 
-gulp.task("compile-all", gulp.parallel("compile-client", "compile-server"));
+gulp.task("compile-all",
+  gulp.parallel(
+    "compile-client",
+    "compile-server",
+    "compile-unit-tests",
+    "compile-selenium-tests",
+  ),
+);
+
+const tslintFolder = (folder) =>
+  gulp.src(`${folder}/**/*.ts?(x)`)
+    .pipe(tslint.default({ formatter: "verbose" }))
+    .pipe(tslint.default.report());
+
+const tslintClient = () => tslintFolder("client");
+const tslintServer = () => tslintFolder("server");
+const tslintTests = () => tslintFolder("tests");
+
+gulp.task("tslint-all", gulp.parallel(tslintClient, tslintServer, tslintTests));
 
 gulp.task("default", gulp.series("compile-all"));

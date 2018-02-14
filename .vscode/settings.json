@@ -18,6 +18,7 @@
   },
   "typescript.tsdk": "./node_modules/typescript/lib",
   "typescriptHero.imports.organizeOnSave": true,
+  "typescriptHero.imports.stringQuoteStyle": "\"",
   "tslint.enable": true,
   "tslint.autoFixOnSave": true
 }

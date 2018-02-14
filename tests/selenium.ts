@@ -1,10 +1,3 @@
-/// <reference types="node" />
-/// <reference types="webdriverio" />
-import { equal } from "assert";
+import "./seleniumtests/loadPage";
 
-describe("fixture", () => {
-  it("has the expected page title", () => {
-    browser.url("/");
-    equal(1, 1);
-  });
-});
+// tslint:disable-next-line:no-consecutive-blank-lines

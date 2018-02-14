@@ -1,9 +1,3 @@
-import "mocha";
+import "./unittests/dummy";
 
-import { equal } from "assert";
-
-describe("dummy test", () => {
-  it("pass", () => {
-    equal(1, 1);
-  });
-});
+// tslint:disable-next-line:no-consecutive-blank-lines

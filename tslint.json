@@ -1,16 +1,12 @@
 {
   "extends": "tslint:latest",
   "rules": {
-    "no-submodule-imports": [
-      true,
-      "bootstrap",
-    ],
+    "no-implicit-dependencies": false,
     "variable-name": [
       true,
       "ban-keywords",
       "check-format",
       "allow-leading-underscore"
     ]
-  },
-  "rulesDirectory": []
+  }
 }

@@ -14,8 +14,8 @@ export function getClientWebpackDevConfig(pathToClientWebpackTS: string): webpac
       `./${join(pathToClientWebpackTS, "client", "index.tsx")}`,
     ],
     plugins:
-    [
-      new webpack.HotModuleReplacementPlugin(),
-    ],
+      [
+        new webpack.HotModuleReplacementPlugin(),
+      ],
   });
 }

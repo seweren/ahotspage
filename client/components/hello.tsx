@@ -4,11 +4,11 @@ import * as React from "react";
 import { setCicca } from "../actions/mainActions";
 import { store } from "../store/store";
 
-interface helloInnerState {
-  cicca: string
+interface IHelloInnerState {
+  cicca: string;
 }
 
-export class Hello extends React.Component<{}, helloInnerState> {
+export class Hello extends React.Component<{}, IHelloInnerState> {
 
   public colors = ["red", "green", "purple", "orange", "blue", "cyan", "brown"];
 
@@ -20,7 +20,7 @@ export class Hello extends React.Component<{}, helloInnerState> {
   public render() {
     return (
       <div>
-        <TextField label="name" onChange={e => this.handleInput(e.currentTarget.value)} />
+        <TextField label="name" onChange={(e) => this.handleInput(e.currentTarget.value)} />
         <Button onClick={() => this.handleCiccaClick()}>
           {this.getRainbowText(`Szia ${this.state.cicca}`)}
         </Button>
@@ -30,12 +30,12 @@ export class Hello extends React.Component<{}, helloInnerState> {
 
   private getRainbowText(text: string) {
     return text
-      .split('')
+      .split("")
       .map((letter, idx) =>
         <span key={idx} style={{ color: this.colors[idx % this.colors.length] }}>
           {letter}
-        </span>
-      )
+        </span>,
+    );
   }
 
   private handleCiccaClick() {
