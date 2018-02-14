@@ -1,10 +1,10 @@
 {
   "version": "2.0.0",
-  "command": "gulp",
   "type": "shell",
   "tasks": [
     {
       "label": "run-tests",
+      "command": "gulp run-tests",
       "group": {
         "kind": "test",
         "isDefault": true
@@ -12,10 +12,16 @@
     },
     {
       "label": "default",
+      "command": "gulp",
       "group": {
         "kind": "build",
         "isDefault": true
       },
+      "problemMatcher": [
+        "$tsc",
+        "$tslint5",
+        "$gulp-tsc"
+      ]
     }
   ]
 }

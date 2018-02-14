@@ -17,8 +17,7 @@
     "**/.awcache": true
   },
   "typescript.tsdk": "./node_modules/typescript/lib",
-  "typescriptHero.resolver.stringQuoteStyle": "\"",
-  "typescriptHero.resolver.organizeOnSave": true,
+  "typescriptHero.imports.organizeOnSave": true,
   "tslint.enable": true,
   "tslint.autoFixOnSave": true
 }

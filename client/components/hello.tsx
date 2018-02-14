@@ -10,6 +10,8 @@ interface helloInnerState {
 
 export class Hello extends React.Component<{}, helloInnerState> {
 
+  public colors = ["red", "green", "purple", "orange", "blue", "cyan", "brown"];
+
   public constructor() {
     super({});
     this.state = { cicca: "delfin" };
@@ -19,9 +21,21 @@ export class Hello extends React.Component<{}, helloInnerState> {
     return (
       <div>
         <TextField label="name" onChange={e => this.handleInput(e.currentTarget.value)} />
-        <Button onClick={() => this.handleCiccaClick()}>Szia {this.state.cicca}</Button>
+        <Button onClick={() => this.handleCiccaClick()}>
+          {this.getRainbowText(`Szia ${this.state.cicca}`)}
+        </Button>
       </div>
     );
+  }
+
+  private getRainbowText(text: string) {
+    return text
+      .split('')
+      .map((letter, idx) =>
+        <span key={idx} style={{ color: this.colors[idx % this.colors.length] }}>
+          {letter}
+        </span>
+      )
   }
 
   private handleCiccaClick() {
