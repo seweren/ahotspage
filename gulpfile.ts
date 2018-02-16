@@ -24,6 +24,20 @@ const webdriver = getWebdriver();
 const production: boolean = process.env.NODE_ENV === "production";
 let serverPid: ChildProcess = null;
 
+function stopServer() {
+  if (serverPid) {
+    serverPid.kill();
+    serverPid = null;
+  }
+}
+
+function stopSeleniumServer() {
+  if (selenium.child) {
+    (selenium.child as ChildProcess).kill();
+    selenium.child = null;
+  }
+}
+
 gulp.task("compile-server", () => {
   const serverWebpackConfig = production ? serverWebpackProdConfig : serverWebpackDevConfig;
   return webpackStream(serverWebpackConfig, webpack)
@@ -59,10 +73,12 @@ gulp.task("start-server", (done) => {
 gulp.task("start-selenium-server", (done) => {
   selenium.install({}, (installError: any) => {
     if (installError) {
+      stopServer();
       return done(installError);
     }
-    selenium.start((startError: any, child: any) => {
+    selenium.start((startError: any, child: ChildProcess) => {
       if (startError) {
+        stopServer();
         return done(startError);
       }
       selenium.child = child;
@@ -72,18 +88,12 @@ gulp.task("start-selenium-server", (done) => {
 });
 
 gulp.task("stop-server", (done) => {
-  if (serverPid) {
-    serverPid.kill();
-    serverPid = null;
-  }
+  stopServer();
   done();
 });
 
 gulp.task("stop-selenium-server", (done) => {
-  if (selenium.child) {
-    selenium.child.kill();
-    selenium.child = null;
-  }
+  stopSeleniumServer();
   done();
 });
 
@@ -93,7 +103,11 @@ gulp.task("start-servers", gulp.parallel("start-server", "start-selenium-server"
 
 gulp.task("run-selenium-tests-webdriver", (done) =>
   gulp.src(join("tests", "wdio.conf.js")).pipe(webdriver())
-    .once("error", () => { selenium.child.kill(); done(); }),
+    .once("error", () => {
+      stopServer();
+      stopSeleniumServer();
+      done("selenium tests are failed");
+    }),
 );
 
 gulp.task("run-selenium-tests",

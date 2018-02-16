@@ -1,3 +1,9 @@
 import "./seleniumtests/loadPage";
 
-// tslint:disable-next-line:no-consecutive-blank-lines
+after(() => {
+  try {
+    browser.close();
+  } catch (error) {
+    // for chrome webdriver close
+  }
+});

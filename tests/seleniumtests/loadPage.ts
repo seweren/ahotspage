@@ -5,6 +5,6 @@ import { equal } from "assert";
 describe("fixture", () => {
   it("has the expected page title", () => {
     browser.url("/");
-    equal(1, 1);
+    equal(1, 2);
   });
 });
