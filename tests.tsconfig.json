@@ -8,6 +8,7 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "alwaysStrict": true,
+    "sourceMap": true,
     "allowJs": true
   },
   "include": [

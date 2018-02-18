@@ -30,10 +30,10 @@ export let serverWebpackCommonConfig = {
     filename: "server.js",
     path: resolve(__dirname, "server"),
   },
+  plugins: [
+    new webpack.optimize.ModuleConcatenationPlugin(),
+  ],
   resolve: {
     extensions: [".ts", ".tsx"],
   },
-  plugins: [
-    new webpack.optimize.ModuleConcatenationPlugin()
-  ]
 };
