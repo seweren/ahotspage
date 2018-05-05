@@ -1,5 +1,6 @@
 import * as fs from "fs";
 import { resolve } from "path";
+import * as webpack from "webpack";
 
 const nodeModules: any = {};
 fs.readdirSync("./node_modules")
@@ -9,9 +10,10 @@ fs.readdirSync("./node_modules")
     }
   });
 
-export const testsWebpackSeleniumConfig = {
+export const testsWebpackSeleniumConfig: Partial<webpack.Configuration> = {
   entry: ["./tests/selenium.ts"],
   externals: nodeModules,
+  mode: "development",
   module: {
     rules: [
       {

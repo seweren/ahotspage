@@ -12,9 +12,9 @@ export class Hello extends React.Component<{}, IHelloInnerState> {
 
   public colors = ["red", "green", "purple", "orange", "blue", "cyan", "brown"];
 
-  public constructor() {
-    super({});
-    this.state = { cicca: "delfin" };
+  public constructor(props: any) {
+    super(props);
+    this.state = { cicca: "kuttya" };
   }
 
   public render() {

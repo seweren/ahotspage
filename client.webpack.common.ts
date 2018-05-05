@@ -8,7 +8,6 @@ export function getClientWebpackCommonConfig(pathToClientWebpackTS: string): web
         {
           test: /\.tsx?$/,
           use: [
-            { loader: "react-hot-loader/webpack" },
             {
               loader: "awesome-typescript-loader",
               options: { configFileName: join(pathToClientWebpackTS, "client.tsconfig.json"), useCache: true },
@@ -41,11 +40,11 @@ export function getClientWebpackCommonConfig(pathToClientWebpackTS: string): web
       path: resolve(pathToClientWebpackTS, "client"),
       publicPath: "/",
     },
+    plugins: [
+      new webpack.optimize.ModuleConcatenationPlugin(),
+    ],
     resolve: {
       extensions: [".ts", ".tsx", ".js", ".css"],
     },
-    plugins: [
-      new webpack.optimize.ModuleConcatenationPlugin()
-    ]
   };
 }

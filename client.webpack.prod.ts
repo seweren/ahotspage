@@ -10,26 +10,19 @@ export function getClientWebpackProdConfig(pathToClientWebpackTS: string): webpa
     entry: [
       `./${join(pathToClientWebpackTS, "client", "index.tsx")}`,
     ],
+    mode: "production",
+    optimization: {
+      minimize: true,
+    },
     plugins:
-    [
-      new webpack.LoaderOptionsPlugin({
-        debug: false,
-        minimize: true,
-      }),
-      new webpack.DefinePlugin({
-        "process.env": { NODE_ENV: JSON.stringify("production") },
-      }),
-      new webpack.optimize.UglifyJsPlugin({
-        beautify: false,
-        comments: false,
-        compress: {
-          screw_ie8: true,
-        },
-        mangle: {
-          keep_fnames: true,
-          screw_ie8: true,
-        },
-      }),
-    ],
+      [
+        new webpack.LoaderOptionsPlugin({
+          debug: false,
+          minimize: true,
+        }),
+        new webpack.DefinePlugin({
+          "process.env": { NODE_ENV: JSON.stringify("production") },
+        }),
+      ],
   });
 }

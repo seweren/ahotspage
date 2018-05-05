@@ -1,4 +1,4 @@
-import ActionCreatorFactory from "redux-typescript-actions";
+import ActionCreatorFactory from "typescript-fsa";
 
 const actionCreator = ActionCreatorFactory();
 

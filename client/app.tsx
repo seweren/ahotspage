@@ -1,4 +1,5 @@
 import * as React from "react";
+import { hot } from "react-hot-loader";
 import { Provider } from "react-redux";
 import { Route, Router, Switch } from "react-router";
 
@@ -21,3 +22,5 @@ export class App extends React.Component<{}, {}> {
   }
 
 }
+
+export default hot(module)(App);

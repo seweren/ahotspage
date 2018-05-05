@@ -8,11 +8,11 @@ export function getClientWebpackDevConfig(pathToClientWebpackTS: string): webpac
   return merge(getClientWebpackCommonConfig(pathToClientWebpackTS), {
     devtool: "eval" as "eval",
     entry: [
-      "react-hot-loader/patch",
       "webpack/hot/dev-server",
       "webpack-hot-middleware/client",
       `./${join(pathToClientWebpackTS, "client", "index.tsx")}`,
     ],
+    mode: "development",
     plugins:
       [
         new webpack.HotModuleReplacementPlugin(),

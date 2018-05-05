@@ -3,6 +3,10 @@
   "type": "shell",
   "tasks": [
     {
+      "label": "compile-server",
+      "command": "gulp compile-server",
+    },
+    {
       "label": "run-tests",
       "command": "gulp run-tests",
       "group": {
@@ -19,21 +23,14 @@
       },
       "problemMatcher": [
         "$tsc",
-        "$tslint5",
         "$gulp-tsc"
       ]
     },
     {
       "label": "tslint-all",
       "command": "gulp tslint-all",
-      "group": {
-        "kind": "build",
-        "isDefault": true
-      },
       "problemMatcher": [
-        "$tsc",
         "$tslint5",
-        "$gulp-tsc"
       ]
     }
   ]

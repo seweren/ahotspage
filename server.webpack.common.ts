@@ -10,9 +10,10 @@ fs.readdirSync("./node_modules")
     }
   });
 
-export let serverWebpackCommonConfig = {
+export let serverWebpackCommonConfig: Partial<webpack.Configuration> = {
   entry: ["./server/server.ts"],
   externals: nodeModules,
+  mode: "development",
   module: {
     rules: [
       {

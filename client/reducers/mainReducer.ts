@@ -1,6 +1,6 @@
 import * as clone from "clone";
 import { Action, combineReducers } from "redux";
-import { isType } from "redux-typescript-actions";
+import { isType } from "typescript-fsa";
 
 import { setCicca, setKuttya } from "../actions/mainActions";
 import { IMainState } from "../model/mainState";
