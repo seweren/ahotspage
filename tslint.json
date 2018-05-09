@@ -1,12 +1,14 @@
 {
-  "extends": "tslint:latest",
+  "extends": [
+    "tslint:latest",
+    "tslint-react",
+    "tslint-immutable",
+    "tslint-clean-code"
+  ],
   "rules": {
-    "no-implicit-dependencies": false,
-    "variable-name": [
+    "no-implicit-dependencies": [
       true,
-      "ban-keywords",
-      "check-format",
-      "allow-leading-underscore"
+      "dev"
     ]
   }
 }

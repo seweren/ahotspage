@@ -2,20 +2,26 @@ import * as clone from "clone";
 import { Action, combineReducers } from "redux";
 import { isType } from "typescript-fsa";
 
-import { setCicca, setKuttya } from "../actions/mainActions";
+import { setReduxNumberData, setReduxStringData } from "../actions/mainActions";
 import { IMainState } from "../model/mainState";
 
-const ciccaReducer = (state: string = "", action: Action) => {
+const stringReducer = (state: string = "", action: Action) => {
   const newState = clone<string>(state);
-  if (isType(action, setCicca)) {
-    return action.payload.cicca;
+  if (isType(action, setReduxStringData)) {
+    return action.payload.stringData;
   }
-  if (isType(action, setKuttya)) {
-    return action.payload.kuttya;
+  return newState;
+};
+
+const numberReducer = (state: number = 0, action: Action) => {
+  const newState = clone<number>(state);
+  if (isType(action, setReduxNumberData)) {
+    return action.payload.numberData;
   }
   return newState;
 };
 
 export const mainReducer = combineReducers<IMainState>({
-  cicca: ciccaReducer,
+  reduxNumberData: numberReducer,
+  reduxStringData: stringReducer,
 });

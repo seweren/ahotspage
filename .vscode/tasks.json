@@ -3,12 +3,30 @@
   "type": "shell",
   "tasks": [
     {
+      "label": "compile-selenium-tests",
+      "command": "gulp compile-selenium-tests",
+      "problemMatcher": [
+        "$gulp-tsc"
+      ]
+    },
+    {
+      "label": "compile-unit-tests",
+      "command": "gulp compile-unit-tests",
+      "problemMatcher": [
+        "$gulp-tsc"
+      ]
+    },
+    {
       "label": "compile-server",
-      "command": "gulp compile-server",
+      "command": "gulp compile-server"
     },
     {
       "label": "run-tests",
-      "command": "gulp run-tests",
+      "command": "gulp run-tests"
+    },
+    {
+      "label": "run unittests",
+      "command": "npm test",
       "group": {
         "kind": "test",
         "isDefault": true
@@ -30,7 +48,7 @@
       "label": "tslint-all",
       "command": "gulp tslint-all",
       "problemMatcher": [
-        "$tslint5",
+        "$tslint5"
       ]
     }
   ]

@@ -1,3 +1,4 @@
+import ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 import * as fs from "fs";
 import { resolve } from "path";
 import * as webpack from "webpack";
@@ -19,7 +20,10 @@ export const testsWebpackSeleniumConfig: Partial<webpack.Configuration> = {
       {
         test: /\.ts/,
         use: [
-          { loader: "awesome-typescript-loader", options: { configFileName: "tests.tsconfig.json", useCache: true } },
+          {
+            loader: "ts-loader",
+            options: { configFile: "selenium.tsconfig.json", transpileOnly: true },
+          },
         ],
       },
     ],
@@ -31,7 +35,10 @@ export const testsWebpackSeleniumConfig: Partial<webpack.Configuration> = {
     filename: "selenium.js",
     path: resolve(__dirname, "tests"),
   },
+  plugins: [
+    new ForkTsCheckerWebpackPlugin({ tsconfig: "selenium.tsconfig.json" }),
+  ],
   resolve: {
-    extensions: [".ts", ".js"],
+    extensions: [".ts"],
   },
 };

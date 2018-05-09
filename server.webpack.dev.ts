@@ -3,11 +3,11 @@ import * as merge from "webpack-merge";
 
 import { serverWebpackCommonConfig } from "./server.webpack.common";
 
-const devWebpackConfig: Partial<webpack.Configuration> = {
+const serverWebpackDevOptions: Partial<webpack.Configuration> = {
   devtool: "source-map",
 };
 
 export let serverWebpackDevConfig = merge(
   serverWebpackCommonConfig,
-  devWebpackConfig,
+  serverWebpackDevOptions,
 );

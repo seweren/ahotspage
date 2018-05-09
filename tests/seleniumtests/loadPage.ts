@@ -1,5 +1,4 @@
-/// <reference types="node" />
-/// <reference types="webdriverio" />
+/// <reference types="mocha" />
 import { equal } from "assert";
 
 describe("fixture", () => {

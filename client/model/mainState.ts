@@ -1,3 +1,4 @@
 export interface IMainState {
-  cicca: string;
+  reduxStringData: string;
+  reduxNumberData: number;
 }

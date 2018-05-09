@@ -25,8 +25,9 @@
     "**/.awcache": true
   },
   "typescript.tsdk": "./node_modules/typescript/lib",
-  "typescriptHero.imports.organizeOnSave": true,
+  "typescriptHero.imports.organizeOnSave": false,
   "typescriptHero.imports.stringQuoteStyle": "\"",
+  "typescriptHero.imports.multiLineWrapThreshold": 120,
   "tslint.enable": true,
   "tslint.autoFixOnSave": true
 }

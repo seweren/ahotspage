@@ -1,29 +1,40 @@
-import { Button, TextField } from "material-ui";
 import * as React from "react";
+import { connect } from "react-redux";
 
-import { setCicca } from "../actions/mainActions";
-import { store } from "../store/store";
+import { setReduxStringData } from "../actions/mainActions";
+import { IMainState } from "../model/mainState";
 
-interface IHelloInnerState {
-  cicca: string;
+export interface IHelloReactProps {
+  reactStringData: string;
 }
 
-export class Hello extends React.Component<{}, IHelloInnerState> {
+export interface IHelloReduxProps {
+  reduxStringData: string;
+  reduxNumberData: number;
+}
+
+export interface IHelloDispatchProps {
+  setReduxData: (s: string) => void;
+}
+
+export class HelloComp extends React.Component<IHelloReduxProps & IHelloDispatchProps, IHelloReactProps> {
 
   public colors = ["red", "green", "purple", "orange", "blue", "cyan", "brown"];
 
   public constructor(props: any) {
     super(props);
-    this.state = { cicca: "kuttya" };
+    this.state = { reactStringData: "init" };
   }
 
   public render() {
     return (
       <div>
-        <TextField label="name" onChange={(e) => this.handleInput(e.currentTarget.value)} />
-        <Button onClick={() => this.handleCiccaClick()}>
-          {this.getRainbowText(`Szia ${this.state.cicca}`)}
-        </Button>
+        <input type="text" title="name" onChange={this.handleInput} />
+        <button onClick={this.handleClick}>
+          {this.getRainbowText(`Hello ${this.state.reactStringData}`)}
+        </button>
+        <span id="reduxNumber">{this.props.reduxNumberData}</span>
+        <span id="reduxString">{this.props.reduxStringData}</span>
       </div>
     );
   }
@@ -31,20 +42,31 @@ export class Hello extends React.Component<{}, IHelloInnerState> {
   private getRainbowText(text: string) {
     return text
       .split("")
-      .map((letter, idx) =>
+      .map((letter, idx) => (
         <span key={idx} style={{ color: this.colors[idx % this.colors.length] }}>
           {letter}
-        </span>,
+        </span>
+      ),
     );
   }
 
-  private handleCiccaClick() {
-    store.dispatch(setCicca({ cicca: "Melinda" }));
-    this.setState({ cicca: "Melinda" });
+  private handleClick = () => {
+    this.props.setReduxData("reduxData");
+    this.setState({ reactStringData: "reactData" });
   }
 
-  private handleInput(text: string) {
-    this.setState({ cicca: text });
+  private handleInput = (event: React.ChangeEvent<HTMLInputElement>) => {
+    this.setState({ reactStringData: event.currentTarget.value });
   }
 
 }
+
+export default connect<IHelloReduxProps, IHelloDispatchProps, {}, IMainState>(
+  (state) => ({
+    reduxNumberData: state.reduxNumberData,
+    reduxStringData: state.reduxStringData,
+  }),
+  (dispatch) => ({
+    setReduxData: (s: string) => dispatch(setReduxStringData({ stringData: s })),
+  }),
+)(HelloComp);

@@ -14,7 +14,10 @@
     "sourceMap": true,
     "allowJs": true,
     "types": [
-      "jest"
+      "mocha"
     ]
-  }
+  },
+  "files": [
+    "./tests/selenium.ts"
+  ]
 }

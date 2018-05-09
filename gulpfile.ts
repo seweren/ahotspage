@@ -1,6 +1,5 @@
 import { ChildProcess, spawn } from "child_process";
 import * as gulp from "gulp";
-import * as mocha from "gulp-mocha";
 import * as tslint from "gulp-tslint";
 import { join } from "path";
 import * as webpack from "webpack";
@@ -11,7 +10,6 @@ import { getClientWebpackProdConfig } from "./client.webpack.prod";
 import { serverWebpackDevConfig } from "./server.webpack.dev";
 import { serverWebpackProdConfig } from "./server.webpack.prod";
 import { testsWebpackSeleniumConfig } from "./tests.webpack.selenium";
-import { testsWebpackUnitConfig } from "./tests.webpack.unit";
 
 function getSelenium() {
   return require("selenium-standalone");
@@ -19,6 +17,7 @@ function getSelenium() {
 function getWebdriver() {
   return require("gulp-webdriver");
 }
+
 const selenium = getSelenium();
 const webdriver = getWebdriver();
 const production: boolean = process.env.NODE_ENV === "production";
@@ -50,19 +49,9 @@ gulp.task("compile-client", () => {
     .pipe(gulp.dest(clientWebpackConfig.output.path));
 });
 
-gulp.task("compile-unit-tests", () =>
-  webpackStream(testsWebpackUnitConfig, webpack)
-    .pipe(gulp.dest(testsWebpackUnitConfig.output.path)),
-);
-
 gulp.task("compile-selenium-tests", () =>
   webpackStream(testsWebpackSeleniumConfig, webpack)
     .pipe(gulp.dest(testsWebpackSeleniumConfig.output.path)),
-);
-
-gulp.task("run-unit-tests", () =>
-  gulp.src(join(testsWebpackUnitConfig.output.path, testsWebpackUnitConfig.output.filename), { read: false })
-    .pipe(mocha({ reporter: "dot" })),
 );
 
 gulp.task("start-server", (done) => {
@@ -121,20 +110,17 @@ gulp.task("run-selenium-tests",
 
 gulp.task("compile-run-selenium-tests", gulp.series("compile-selenium-tests", "run-selenium-tests"));
 
-gulp.task("compile-run-unit-tests", gulp.series("compile-unit-tests", "run-unit-tests"));
-
-gulp.task("run-tests", gulp.parallel("compile-run-unit-tests", "compile-run-selenium-tests"));
+gulp.task("run-tests", gulp.parallel("compile-run-selenium-tests"));
 
 gulp.task("compile-all",
   gulp.parallel(
     "compile-client",
     "compile-server",
-    "compile-unit-tests",
     "compile-selenium-tests",
   ),
 );
 
-const tslintFolder = (folder) =>
+const tslintFolder = (folder: string) =>
   gulp.src(`${folder}/**/*.ts?(x)`)
     .pipe(tslint.default({ formatter: "verbose" }))
     .pipe(tslint.default.report());
