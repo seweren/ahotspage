@@ -13,11 +13,7 @@
   "files.insertFinalNewline": true,
   "files.trimTrailingWhitespace": true,
   "files.exclude": {
-    "/**/index.js": true,
-    "/**/server.js": true,
-    "/**/unittests.js": true,
-    "/**/selenium.js": true,
-    "/**/*.map": true,
+    "**/*.map": true,
     "**/.git": true,
     "**/.svn": true,
     "**/.hg": true,
@@ -30,6 +26,7 @@
   "typescriptHero.imports.multiLineWrapThreshold": 120,
   "tslint.enable": true,
   "tslint.autoFixOnSave": true,
+  "tslint.jsEnable": true,
   "vim.useSystemClipboard": true,
   "vim.useCtrlKeys": true,
   "vim.insertModeKeyBindings": [

@@ -27,8 +27,7 @@
     ],
     "collectCoverage": true,
     "coverageReporters": [
-      "text",
-      "html"
+      "text"
     ],
     "moduleFileExtensions": [
       "ts",
