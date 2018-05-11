@@ -1,8 +1,8 @@
 import * as React from "react";
 import { connect } from "react-redux";
 
-import { setReduxStringData } from "../actions/mainActions";
-import { IMainState } from "../model/mainState";
+import { setReduxStringData } from "../../actions/mainActions";
+import { IMainState } from "../../model/mainState";
 
 export interface IHelloReactProps {
   reactStringData: string;

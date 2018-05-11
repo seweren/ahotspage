@@ -5,14 +5,14 @@ import * as React from "react";
 import { Provider } from "react-redux";
 import configureStore from "redux-mock-store";
 
-import { setReduxStringData } from "../../client/actions/mainActions";
+import { setReduxStringData } from "../../../actions/mainActions";
+import { IMainState } from "../../../model/mainState";
 import Hello, {
   HelloComp,
   IHelloDispatchProps,
   IHelloReactProps,
   IHelloReduxProps,
-} from "../../client/components/hello";
-import { IMainState } from "./../../client/model/mainState";
+} from "../hello";
 
 configure({ adapter: new Adapter() });
 

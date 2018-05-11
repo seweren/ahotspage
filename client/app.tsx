@@ -3,7 +3,7 @@ import { hot } from "react-hot-loader";
 import { Provider } from "react-redux";
 import { Route, Router, Switch } from "react-router";
 
-import Hello from "./components/hello";
+import Hello from "./components/hello/hello";
 import { hashHistory } from "./history/history";
 import { store } from "./store/store";
 

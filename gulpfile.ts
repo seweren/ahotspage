@@ -1,7 +1,9 @@
 import { ChildProcess, spawn } from "child_process";
 import * as gulp from "gulp";
 import * as tslint from "gulp-tslint";
+import webdriver = require("gulp-webdriver");
 import { join } from "path";
+import selenium = require("selenium-standalone");
 import * as webpack from "webpack";
 import * as webpackStream from "webpack-stream";
 
@@ -9,17 +11,7 @@ import { getClientWebpackDevConfig } from "./client.webpack.dev";
 import { getClientWebpackProdConfig } from "./client.webpack.prod";
 import { serverWebpackDevConfig } from "./server.webpack.dev";
 import { serverWebpackProdConfig } from "./server.webpack.prod";
-import { testsWebpackSeleniumConfig } from "./tests.webpack.selenium";
 
-function getSelenium() {
-  return require("selenium-standalone");
-}
-function getWebdriver() {
-  return require("gulp-webdriver");
-}
-
-const selenium = getSelenium();
-const webdriver = getWebdriver();
 const production: boolean = process.env.NODE_ENV === "production";
 let serverPid: ChildProcess = null;
 
@@ -48,11 +40,6 @@ gulp.task("compile-client", () => {
   return webpackStream(clientWebpackConfig, webpack)
     .pipe(gulp.dest(clientWebpackConfig.output.path));
 });
-
-gulp.task("compile-selenium-tests", () =>
-  webpackStream(testsWebpackSeleniumConfig, webpack)
-    .pipe(gulp.dest(testsWebpackSeleniumConfig.output.path)),
-);
 
 gulp.task("start-server", (done) => {
   serverPid = spawn("node", ["server/server.js"]);
@@ -108,17 +95,7 @@ gulp.task("run-selenium-tests",
   ),
 );
 
-gulp.task("compile-run-selenium-tests", gulp.series("compile-selenium-tests", "run-selenium-tests"));
-
-gulp.task("run-tests", gulp.parallel("compile-run-selenium-tests"));
-
-gulp.task("compile-all",
-  gulp.parallel(
-    "compile-client",
-    "compile-server",
-    "compile-selenium-tests",
-  ),
-);
+gulp.task("compile-all", gulp.parallel("compile-client", "compile-server"));
 
 const tslintFolder = (folder: string) =>
   gulp.src(`${folder}/**/*.ts?(x)`)

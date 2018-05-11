@@ -29,5 +29,21 @@
   "typescriptHero.imports.stringQuoteStyle": "\"",
   "typescriptHero.imports.multiLineWrapThreshold": 120,
   "tslint.enable": true,
-  "tslint.autoFixOnSave": true
+  "tslint.autoFixOnSave": true,
+  "vim.useSystemClipboard": true,
+  "vim.useCtrlKeys": true,
+  "vim.insertModeKeyBindings": [
+    {
+      "before": [
+        "<C-v>"
+      ],
+      "after": [],
+      "commands": [
+        {
+          "command": "editor.action.clipboardPasteAction",
+          "args": []
+        }
+      ]
+    }
+  ]
 }
